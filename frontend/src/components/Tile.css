@@ -5,3 +5,7 @@
 .hover-bg:hover {
     background-color: #102542;
 }
+
+.hover-bg:hover p {
+    color: #FFFFFF;
+}

@@ -19,6 +19,7 @@ function App() {
                 key={index}
                 title={element.name}
                 link={element.link}
+                text={element.text}
               />
             ))}
           </div>
