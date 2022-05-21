@@ -1,0 +1,15 @@
+.color-blue {
+    color: #102542;
+}
+
+.background-blue {
+    background-color: #102542;
+}
+
+.color-orange {
+    color: #F87060;
+}
+
+.login-hover:hover {
+    color: #F87060;
+}
