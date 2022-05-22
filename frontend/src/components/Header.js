@@ -1,5 +1,4 @@
 import React from "react";
-import './Header.css';
 
 const Header = ({ logo }) => {
     return (
@@ -9,9 +8,9 @@ const Header = ({ logo }) => {
                     <a href="#">
                         <img className="h-10 w-auto sm:h-20" src={logo} alt="" />
                     </a>
-                    <h1 className="font-bold text-5xl">Herzlich Willkommen in <span className="color-blue">Cyber</span><span className="color-orange">City</span></h1>
+                    <h1 className="font-bold text-5xl">Herzlich Willkommen in <span className="text-oxfordblue">Cyber</span><span className="text-bittersweet">City</span></h1>
                     <div>
-                        <a href="#" className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white background-blue login-hover"> Login </a>
+                        <a href="#" className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-oxfordblue hover:text-bittersweet"> Login </a>
                     </div>
                 </div>
             </div>
