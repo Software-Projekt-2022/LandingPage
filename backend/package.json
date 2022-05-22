@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Software-Projekt-2022/LandingPage#readme",
   "dependencies": {
+    "amqplib": "^0.9.1",
     "express": "^4.18.0"
   }
 }
