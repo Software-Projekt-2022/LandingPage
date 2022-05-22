@@ -1,4 +1,4 @@
-const amqp = require('amqplib/callback_api')
+const amqp = require('amqplib/callback_api');
 
 const microservice_name = 'microservice.landing_page';
 const microservice_prefix = 'LAN-';
@@ -8,7 +8,7 @@ const microservice_queue = 'microservice.landing_page';
 let amqp_connection;
 let amqp_channel;
 
-function connect(done) {
+exports.connectEventBus = function connect(done) {
     amqp.connect('amqp://localhost', (err, connection) => {
         if (err) {
             throw err;
@@ -26,7 +26,7 @@ function connect(done) {
     });
 }
 
-function listenForEvents(callback) {
+exports.listenForEvents = function listenForEvents(callback) {
     amqp_channel.consume(microservice_queue, msg => {
         if (msg.content) {
             callback(msg.content);
