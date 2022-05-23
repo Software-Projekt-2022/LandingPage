@@ -19,3 +19,5 @@ RUN npm run build
 FROM nginx:1.13-alpine
 
 COPY --from=builder /landingpage_frontend/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d

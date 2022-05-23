@@ -3,7 +3,7 @@
 import React from "react";
 import logo from '../logo.png';
 
-const Login = ({ }) => {
+const Login = () => {
     return (
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
@@ -18,7 +18,7 @@ const Login = ({ }) => {
                         Eingeloggte Benutzer können alle CyberCity Services nutzen!
                     </p>
                 </div>
-                <form className="mt-8 space-y-6" action="#" method="POST">
+                <form className="mt-8 space-y-6" action="login" method="GET">
                     <input type="hidden" name="remember" defaultValue="true" />
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
@@ -65,7 +65,7 @@ const Login = ({ }) => {
                         </div>
 
                         <div className="text-sm">
-                            <a href="#" className="font-medium text-bittersweet">
+                            <a href="login" className="font-medium text-bittersweet">
                                 Passwort vergessen?
                             </a>
                         </div>
@@ -82,7 +82,7 @@ const Login = ({ }) => {
                 </form>
                 <p className="mt-2 text-center text-sm text-gray-600">
                     Noch kein Account?{' '}
-                    <a href="#" className="font-medium text-bittersweet">
+                    <a href="login" className="font-medium text-bittersweet">
                         Registrieren!
                     </a>
                 </p>

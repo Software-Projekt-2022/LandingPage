@@ -5,7 +5,7 @@ const Header = ({ logo }) => {
         <div className="relative bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center border-b-2 border-gray-100 md:space-x-10">
-                    <a href="#">
+                    <a href="home">
                         <img className="h-10 w-auto sm:h-20" src={logo} alt="" />
                     </a>
                     <h1 className="font-bold text-5xl">Herzlich Willkommen in <span className="text-oxfordblue">Cyber</span><span className="text-bittersweet">City</span></h1>
