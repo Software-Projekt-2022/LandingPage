@@ -1,6 +1,6 @@
 // all CyberCity services and their titles, description, images and links
 
-export default [
+const services = [
     {
         name: "Gesundheitswesen",
         link: "http://gesundheitswesen.cyber-city.systems",
@@ -27,3 +27,5 @@ export default [
         text: "Aktuelle Veranstaltungen, städtische Vereine und die Stadtbücherei. All das wartet im Bereich Kultur!"
     }
 ];
+
+export default services;
