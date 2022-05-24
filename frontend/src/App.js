@@ -18,6 +18,7 @@ function App() {
                 key={index}
                 title={element.name}
                 link={element.link}
+                image={element.image}
                 text={element.text}
               />
             ))}
