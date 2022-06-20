@@ -82,7 +82,7 @@ const Login = () => {
                 </form>
                 <p className="mt-2 text-center text-sm text-gray-600">
                     Noch kein Account?{' '}
-                    <a href="login" className="font-medium text-bittersweet">
+                    <a href="register" className="font-medium text-bittersweet">
                         Registrieren!
                     </a>
                 </p>

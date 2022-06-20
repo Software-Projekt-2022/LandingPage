@@ -10,6 +10,7 @@ import {
 import './index.css';
 import App from './App';
 import Login from './components/Login';
+import Registration from './components/Registration';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
     <Router>
       <Routes>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Registration/>}/>
         <Route path="/home" element={<App />}/>
         <Route path="/" element={<App />}/>
       </Routes>
