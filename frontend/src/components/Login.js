@@ -2,6 +2,7 @@
 
 import React from "react";
 import toast from 'react-hot-toast';
+import Cookies from 'js-cookie';
 
 import logo from '../logo.png';
 import CONFIG from "../config";
@@ -34,7 +35,7 @@ const login = (e) => {
         }
     })
     .then(response => {
-        document.cookie = "cybercity-auth="+response.content.jwt.token+";path=/;domain=cyber-city.systems";
+        Cookies.set("cybercity-auth", response.content.jwt.token, {path: '/', domain: 'cyber-city.systems', sameSite: 'strict'});
         const params = new URLSearchParams(window.location.search);
         const target = params.get("target");
         window.location = target;
