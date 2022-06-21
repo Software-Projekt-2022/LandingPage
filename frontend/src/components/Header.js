@@ -9,7 +9,7 @@ const logInOut = () => {
         Cookies.remove("cybercity-auth", {path: '/', domain: 'cyber-city.systems', sameSite: 'strict'});
         window.location.reload();
     } else {
-        window.location = CONFIG.frontendURL + 'login';
+        window.location = CONFIG.frontendURL + 'login?target=' + CONFIG.frontendURL;
     }
 }
 
@@ -23,7 +23,7 @@ const Header = ({ logo }) => {
                     </a>
                     <h1 className="font-bold text-5xl">Herzlich Willkommen in <span className="text-oxfordblue">Cyber</span><span className="text-bittersweet">City</span></h1>
                     <div>
-                        <a onClick={logInOut} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-oxfordblue hover:text-bittersweet"> {isLoggedIn() ? "Logout" : "Login"} </a>
+                        <button onClick={logInOut} className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-oxfordblue hover:text-bittersweet"> {isLoggedIn() ? "Logout" : "Login"} </button>
                     </div>
                 </div>
             </div>
