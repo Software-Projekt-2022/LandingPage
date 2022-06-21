@@ -1,7 +1,49 @@
 /*Based on https://tailwindui.com/components/application-ui/forms/sign-in-forms*/
 
 import React from "react";
+import toast from 'react-hot-toast';
+
 import logo from '../logo.png';
+import CONFIG from "../config";
+
+const login = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const logindata = {
+        email: email,
+        password: password
+    }
+
+    fetch(CONFIG.authAPI + 'login', {
+        method: 'POST',
+        mode: 'same-site',
+        credentials: 'same-site',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(logindata)
+    })
+    .then(res => {
+        if(res.ok) {
+            return res.json();
+        } else {
+            throw new Error(res);
+        }
+    })
+    .then(response => {
+        document.cookie = "cybercity-auth="+response.content.jwt.token+";path=/;domain=cyber-city.systems";
+        const params = new URLSearchParams(window.location.search);
+        const target = params.get("target");
+        window.location = target;
+    })
+    .catch(error => {
+        toast.error(error.devMsg);
+    });
+}
+
 
 const Login = () => {
     return (
@@ -18,7 +60,7 @@ const Login = () => {
                         Eingeloggte Benutzer können alle CyberCity Services nutzen!
                     </p>
                 </div>
-                <form className="mt-8 space-y-6" action="login" method="GET">
+                <form className="mt-8 space-y-6" onSubmit={login}>
                     <input type="hidden" name="remember" defaultValue="true" />
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>

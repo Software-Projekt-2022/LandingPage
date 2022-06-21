@@ -1,10 +1,13 @@
 import React from "react";
+import toast from 'react-hot-toast';
+
 import logo from '../logo.png';
+import CONFIG from "../config";
 
 const checkPasswordMatch = () => {
     let pwd = document.getElementById("password").value;
     let pwdConfirm = document.getElementById("password-confirm").value;
-    if(pwd === pwdConfirm && pwd.length > 0) {
+    if (pwd === pwdConfirm && pwd.length > 3) {
         document.getElementById("register-btn").disabled = false;
         document.getElementById("no-pwd-match").style.visibility = "hidden";
     } else {
@@ -12,6 +15,42 @@ const checkPasswordMatch = () => {
         document.getElementById("register-btn").disabled = true;
         document.getElementById("no-pwd-match").style.visibility = "visible";
     }
+}
+
+const register = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const userdata = {
+        email: email,
+        password: password
+    }
+
+    fetch(CONFIG.authAPI + 'accounts', {
+        method: 'POST',
+        mode: 'same-site',
+        credentials: 'same-site',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userdata)
+    })
+    .then(res => {
+        if(res.ok) {
+            return res.json();
+        } else {
+            throw new Error(res);
+        }
+    })
+    .then(response => {
+        toast.success("Erfolgreich registriert");
+        window.location = CONFIG.frontendURL + 'login';
+    })
+    .catch(error => {
+        toast.error(error.devMsg);
+    });
 }
 
 const Registration = () => {
@@ -29,11 +68,11 @@ const Registration = () => {
                         Erstellen Sie Ihren persönlichen Bürger-Account, um das digitale Angebot der CyberCity in vollem Umfang zu nutzen!
                     </p>
                 </div>
-                <form action="">
+                <form onSubmit={register}>
                     <div className="mt-2">
                         <div className="mt-2">
                             <label className="block" htmlFor="email">Email-Adresse</label>
-                            <input 
+                            <input
                                 id="email-address"
                                 name="email"
                                 type="email"
@@ -44,7 +83,7 @@ const Registration = () => {
                         </div>
                         <div className="mt-2">
                             <label className="block">Passwort</label>
-                            <input 
+                            <input
                                 id="password"
                                 name="password"
                                 type="password"
@@ -56,7 +95,7 @@ const Registration = () => {
                         </div>
                         <div className="mt-2">
                             <label className="block">Passwort bestätigen</label>
-                            <input 
+                            <input
                                 id="password-confirm"
                                 name="password-confirm"
                                 type="password"
