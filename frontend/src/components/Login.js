@@ -20,8 +20,7 @@ const login = (e) => {
 
     fetch(CONFIG.authAPI + 'login', {
         method: 'POST',
-        mode: 'same-site',
-        credentials: 'same-site',
+        mode: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -30,8 +29,10 @@ const login = (e) => {
     .then(res => {
         if(res.ok) {
             return res.json();
+        } else if (res.status === 409) {
+            throw new Error("Email-Adresse oder Passwort sind falsch.");
         } else {
-            throw new Error(res);
+            throw new Error("Ups...Etwas ist schief gelaufen 😔");
         }
     })
     .then(response => {
@@ -41,7 +42,7 @@ const login = (e) => {
         window.location = target;
     })
     .catch(error => {
-        toast.error(error.devMsg);
+        toast.error(error.message);
     });
 }
 
