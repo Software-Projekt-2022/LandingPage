@@ -11,7 +11,6 @@ const isLoggedIn = () => {
     // Check if token is valid
     return fetch(CONFIG.authAPI + 'validate_token', {
         method: 'GET',
-        mode: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': authToken

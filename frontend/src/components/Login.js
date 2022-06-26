@@ -20,7 +20,6 @@ const login = (e) => {
 
     fetch(CONFIG.authAPI + 'login', {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },

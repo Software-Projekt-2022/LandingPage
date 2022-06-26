@@ -34,7 +34,6 @@ const register = (e) => {
 
     fetch(CONFIG.authAPI + 'accounts', {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
