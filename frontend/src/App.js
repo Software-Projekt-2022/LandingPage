@@ -5,11 +5,12 @@ import NewsFeed from './components/NewsFeed';
 import Header from './components/Header';
 
 import services from './data/services';
+import isLoggedIn from "./helpers";
 
 function App() {
   return (
     <div>
-      <Header logo={logo}/>
+      <Header logo={logo} />
       <main className="h-full md:h-screen w-full grid grid-cols-1 md:grid-cols-5">
         <section className="container mx-auto px-0 md:px-4 py-4 md:col-span-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-4">
@@ -24,9 +25,11 @@ function App() {
             ))}
           </div>
         </section>
-        <section className="container mx-auto px-0 md:px-4 py-4">
-          <NewsFeed/>
-        </section>
+        {isLoggedIn() ?
+          <section className="container mx-auto px-0 md:px-4 py-4">
+            <NewsFeed />
+          </section>
+          : <></>}
       </main>
     </div>
   );

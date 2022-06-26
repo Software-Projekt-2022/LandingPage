@@ -1,7 +1,51 @@
 /*Based on https://tailwindui.com/components/application-ui/forms/sign-in-forms*/
 
 import React from "react";
+import toast from 'react-hot-toast';
+import Cookies from 'js-cookie';
+
 import logo from '../logo.png';
+import CONFIG from "../config";
+
+const login = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const logindata = {
+        email: email,
+        password: password
+    }
+
+    fetch(CONFIG.authAPI + 'login', {
+        method: 'POST',
+        mode: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(logindata)
+    })
+    .then(res => {
+        if(res.ok) {
+            return res.json();
+        } else if (res.status === 409) {
+            throw new Error("Email-Adresse oder Passwort sind falsch.");
+        } else {
+            throw new Error("Ups...Etwas ist schief gelaufen 😔");
+        }
+    })
+    .then(response => {
+        Cookies.set("cybercity-auth", response.content.jwt.token, {path: '/', domain: 'cyber-city.systems', sameSite: 'strict'});
+        const params = new URLSearchParams(window.location.search);
+        const target = params.get("target");
+        window.location = target;
+    })
+    .catch(error => {
+        toast.error(error.message);
+    });
+}
+
 
 const Login = () => {
     return (
@@ -18,7 +62,7 @@ const Login = () => {
                         Eingeloggte Benutzer können alle CyberCity Services nutzen!
                     </p>
                 </div>
-                <form className="mt-8 space-y-6" action="login" method="GET">
+                <form className="mt-8 space-y-6" onSubmit={login}>
                     <input type="hidden" name="remember" defaultValue="true" />
                     <div className="rounded-md shadow-sm -space-y-px">
                         <div>
@@ -82,7 +126,7 @@ const Login = () => {
                 </form>
                 <p className="mt-2 text-center text-sm text-gray-600">
                     Noch kein Account?{' '}
-                    <a href="login" className="font-medium text-bittersweet">
+                    <a href="register" className="font-medium text-bittersweet">
                         Registrieren!
                     </a>
                 </p>

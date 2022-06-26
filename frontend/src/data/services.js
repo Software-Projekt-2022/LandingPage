@@ -21,7 +21,7 @@ const services = [
     },
     {
         name: "Unternehmensregister",
-        link: "http://185.194.217.213:3000/",
+        link: "http://unternehmensregister.cyber-city.systems",
         image: "https://cdn-icons-png.flaticon.com/512/1465/1465439.png",
         text: "Das zentrale Stellenportal der Stadt. Hier finden sich Unternehmen und Bürger"
     },

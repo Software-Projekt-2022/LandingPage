@@ -10,13 +10,19 @@ import {
 import './index.css';
 import App from './App';
 import Login from './components/Login';
+import Registration from './components/Registration';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <div>
+      <Toaster/>
+    </div>
     <Router>
       <Routes>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Registration/>}/>
         <Route path="/home" element={<App />}/>
         <Route path="/" element={<App />}/>
       </Routes>
