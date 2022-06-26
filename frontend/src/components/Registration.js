@@ -42,12 +42,10 @@ const register = (e) => {
     .then(res => {
         if(res.ok) {
             return res.json();
-        } else if (res.status === 409) {
-            throw new Error("Die Email ist bereits vergeben!");
-        } else if (res.status === 422) {
-            throw new Error("Ungültige Eingabedaten!");
         } else {
-            throw new Error("Ups...Etwas ist schief gelaufen 😔");
+            return res.json().then(err => {
+                throw new Error(res.status + " " + err.code + "😔");
+            });
         }
     })
     .then(response => {
