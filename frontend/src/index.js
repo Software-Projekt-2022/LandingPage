@@ -12,21 +12,24 @@ import App from './App';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import { Toaster } from 'react-hot-toast';
+import { SocketContext, socket } from './context/socket';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div>
-      <Toaster/>
-    </div>
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Registration/>}/>
-        <Route path="/home" element={<App />}/>
-        <Route path="/" element={<App />}/>
-      </Routes>
-    </Router>
+    <SocketContext.Provider value={socket}>
+      <div>
+        <Toaster/>
+      </div>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Registration/>}/>
+          <Route path="/home" element={<App />}/>
+          <Route path="/" element={<App />}/>
+        </Routes>
+      </Router>
+    </SocketContext.Provider>
   </React.StrictMode>
 );
 

@@ -50,7 +50,7 @@ const register = (e) => {
     })
     .then(response => {
         toast.success("Erfolgreich registriert");
-        window.location = CONFIG.frontendURL + 'login';
+        window.location = CONFIG.frontendURL + 'login/?target=https://cyber-city.systems/';
     })
     .catch(error => {
         toast.error(error.message);
