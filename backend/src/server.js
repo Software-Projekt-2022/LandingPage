@@ -1,11 +1,15 @@
+const { createServer } = require("http");
 const { Server } = require("socket.io");
-const { connectEventBus, listenForEvents } = require("./eventhandler.js");
 
-const port = 4000;
-const io = new Server(port);
-
-let socket;
-
-io.on('connection', sock => {
-  socket = sock;
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*'
+  }
 });
+
+io.on("connection", (socket) => {
+  socket.emit("NEWS", [{ title: "Sommerfest", link: "#", text: "Das große Sommerfest steht an" }, { title: "Sommerfest", link: "#", text: "Das große Sommerfest steht an" }]);
+});
+
+httpServer.listen(4000, '0.0.0.0');
